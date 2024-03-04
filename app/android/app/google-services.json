@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "722505957254",
+    "project_id": "mr-city-2fe7c",
+    "storage_bucket": "mr-city-2fe7c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:722505957254:android:6418017504b008c02db607",
+        "android_client_info": {
+          "package_name": "com.example.mr_city"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUT3FV1yulq44xACGU9FcVBQZxRmLNqBg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
