@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:mr_city/changepassword.dart';
 import 'package:mr_city/editprofile.dart';
+import 'package:mr_city/email.dart';
 import 'package:mr_city/myplace.dart';
 import 'package:mr_city/topbar.dart';
 
@@ -20,7 +22,7 @@ class _MyProfileState extends State<MyProfile> {
 
   String contact = 'Loding...';
 
-  String profileImageUrl = 'assets/anonymous..jpg';
+  String profileImageUrl = 'assets/abc.jpg.webp';
 
   void getData() {
     final user = FirebaseAuth.instance.currentUser;
@@ -40,8 +42,9 @@ class _MyProfileState extends State<MyProfile> {
             email = userData?['email'] ?? 'Email Not Found';
             contact = userData?['contact'] ?? 'Contact Not Found';
 
-            if (userData?['profileImageUrl'] != null) {
-              profileImageUrl = userData?['profileImageUrl'];
+            if (userData?['imageUrl'] != null) {
+              profileImageUrl = userData?['imageUrl'];
+              print(userData?['imageUrl']);
             }
           });
         }
@@ -78,14 +81,15 @@ class _MyProfileState extends State<MyProfile> {
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Center(
+                    Center(
                       child: Stack(
                         children: [
                           CircleAvatar(
-                            radius: 75,
-                            backgroundColor: Color.fromARGB(255, 0, 0, 0),
-                            backgroundImage: AssetImage('assets/jinu.jpg'),
-                          ),
+                              radius: 75,
+                              backgroundImage: profileImageUrl ==
+                                      'assets/abc.jpg.webp'
+                                  ? AssetImage(profileImageUrl) as ImageProvider
+                                  : NetworkImage(profileImageUrl)),
                         ],
                       ),
                     ),
@@ -99,7 +103,7 @@ class _MyProfileState extends State<MyProfile> {
                       ),
                     )),
                     Container(
-                      padding: const EdgeInsets.all(75),
+                      padding: const EdgeInsets.all(70),
                       child: Column(
                         children: [
                           Row(
@@ -127,7 +131,7 @@ class _MyProfileState extends State<MyProfile> {
                                             context,
                                             MaterialPageRoute(
                                               builder: (context) =>
-                                                   Editprofile(),
+                                                  Editprofile(),
                                             ));
                                       },
                                       child: const Text('Edit Profile')))
@@ -136,9 +140,31 @@ class _MyProfileState extends State<MyProfile> {
                           SizedBox(height: 10),
                           Row(
                             children: [
-                              Expanded(child: ElevatedButton(onPressed: (){
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => Myplace(),));
-                              }, child: Text('My Place')))
+                              Expanded(
+                                  child: ElevatedButton(
+                                      onPressed: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) => Myplace(),
+                                            ));
+                                      },
+                                      child: Text('My Place')))
+                            ],
+                          ),
+                          SizedBox(height: 10),
+                          Row(
+                            children: [
+                              Expanded(
+                                  child: ElevatedButton(
+                                      onPressed: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) => ChangePass(),
+                                            ));
+                                      },
+                                      child: Text('Change Password')))
                             ],
                           )
                         ],

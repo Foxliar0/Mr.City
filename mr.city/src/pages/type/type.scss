@@ -1,0 +1,29 @@
+.type{
+    display: flex;
+
+
+    .typecontainer{
+        flex: 6;
+
+
+        .type-box{
+            margin: 10px;
+            gap: 1rem;
+            width: 500px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .boxA{
+            display: flex;
+            justify-content: center;
+            padding: 25px;
+        }
+
+        
+    }
+    .head{
+        color: rgb(66, 66, 66);
+        text-align: center;
+    }
+}

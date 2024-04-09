@@ -16,7 +16,7 @@ class _RequestState extends State<Request> {
         width: double.infinity,
         height: double.infinity,
         decoration: BoxDecoration(
-            image: DecorationImage(image: AssetImage('assets/qwert.jpg'))),
+            image: DecorationImage(image: AssetImage('assets/qwert.jpg'), fit: BoxFit.cover)),
         child: Container(
           padding: EdgeInsets.all(20),
           child: Column(

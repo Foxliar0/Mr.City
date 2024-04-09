@@ -3,5 +3,9 @@
     
     .listcontainer{
         flex: 6;
+
+        .districtListDeletered{
+            color: red;
+        }
     }
-}
+}   

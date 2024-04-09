@@ -6,7 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mr_city/topbar.dart';
 import 'package:progress_dialog_null_safe/progress_dialog_null_safe.dart';
-
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 class Editprofile extends StatefulWidget {
   const Editprofile({super.key});
 
@@ -70,6 +71,52 @@ class _EditprofileState extends State<Editprofile> {
     }
   }
 
+  void initState(){
+    super.initState();
+    getData();
+  }
+    Future<void> _storeUserData() async {
+    try {
+      final user = FirebaseAuth.instance.currentUser;
+
+    final userId = user?.uid;
+      final FirebaseFirestore firestore = FirebaseFirestore.instance;
+      await firestore.collection('users').doc(userId).update({
+        'name': _nameController.text,
+        'contact': _contactController.text,
+        // Add more fields as needed
+      });
+
+      await _uploadImage(userId!);
+    } catch (e) {
+      print("Error editing user data: $e");
+      // Handle error, show message or take appropriate action
+    }
+  }
+    Future<void> _uploadImage(String userId) async {
+    try {
+      if (_selectedImage != null) {
+        Reference ref =
+            FirebaseStorage.instance.ref().child('user_images/$userId.jpg');
+        UploadTask uploadTask = ref.putFile(File(_selectedImage!.path));
+        TaskSnapshot taskSnapshot = await uploadTask.whenComplete(() => null);
+
+        String imageUrl = await taskSnapshot.ref.getDownloadURL();
+
+        await FirebaseFirestore.instance
+            .collection('name')
+            .doc(userId)
+            .update({
+          'name': name,
+          'phone':contact
+        });
+      }
+    } catch (e) {
+      print("Error uploading image: $e");
+      // Handle error, show message or take appropriate action
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,7 +124,7 @@ class _EditprofileState extends State<Editprofile> {
         child: Container(
           decoration: const BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage('assets/xyz.jpg.jpg'), fit: BoxFit.cover)),
+                  image: AssetImage('assets/xyz.jpg.jpg'), fit: BoxFit.fill)),
           width: double.infinity,
           height: double.infinity,
           padding: const EdgeInsets.all(20),
@@ -139,8 +186,8 @@ class _EditprofileState extends State<Editprofile> {
                   decoration: InputDecoration(
                       filled: true,
                       fillColor: const Color.fromARGB(255, 139, 181, 203),
-                      labelText: 'Name',
-                      labelStyle:
+                      hintText: 'Name',
+                      hintStyle:
                           const TextStyle(color: Color.fromARGB(255, 0, 0, 24)),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(50),
@@ -153,8 +200,8 @@ class _EditprofileState extends State<Editprofile> {
                     decoration: InputDecoration(
                         filled: true,
                         fillColor: const Color.fromARGB(255, 139, 181, 203),
-                        labelText: 'Contact',
-                        labelStyle:
+                        hintText: 'Contact',
+                        hintStyle:
                             const TextStyle(color: Color.fromARGB(255, 0, 0, 2)),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(50),
@@ -165,7 +212,9 @@ class _EditprofileState extends State<Editprofile> {
                   children: [
                     Expanded(
                         child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              _storeUserData();
+                            },
                             child: const Padding(
                               padding: EdgeInsets.all(10),
                               child: Text(

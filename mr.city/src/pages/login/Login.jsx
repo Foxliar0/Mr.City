@@ -1,4 +1,3 @@
-import Sidebar from "../../components/sidebar/Sidebar"
 import "./login.css"
 import { FaUser } from "react-icons/fa"; 
 import { FaLock } from "react-icons/fa";
@@ -36,4 +35,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Login;

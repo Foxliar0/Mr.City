@@ -1,4 +1,4 @@
-export const userColumns = [
+    export const userColumns = [
     { field: 'id', headerName: 'ID', width: 70 },
     { field:"user",headerName:"User", width: 230, renderCell: (params)=>{
         return(

@@ -1,0 +1,13 @@
+.location{
+    display: flex;
+
+    .locatcontainer{
+        flex: 6;
+
+        .boxc{
+            display: flex;
+            justify-content: center;
+            padding: 25px;
+        }
+    }
+}

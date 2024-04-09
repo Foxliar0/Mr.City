@@ -1,15 +1,15 @@
 import "./sidebar.scss";
-import DashboardIcon from "@mui/icons-material/Dashboard";
 import PersonIcon from "@mui/icons-material/Person";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import PersonAddIcon from "@mui/icons-material/PersonAdd";
-import CircleNotificationsIcon from "@mui/icons-material/CircleNotifications";
-import LoginIcon from "@mui/icons-material/Login";
-import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
 import AddLocationAltIcon from "@mui/icons-material/AddLocationAlt";
-import SettingsIcon from "@mui/icons-material/Settings";
+import MyLocationIcon from "@mui/icons-material/MyLocation";
+import AddIcon from "@mui/icons-material/Add";
+import LogoutIcon from '@mui/icons-material/Logout';
 import NoteIcon from "@mui/icons-material/Note";
+import RouteIcon from "@mui/icons-material/Route";
+import DepartureBoardIcon from "@mui/icons-material/DepartureBoard";
+import HailIcon from "@mui/icons-material/Hail";
+import { Link } from "react-router-dom";
+import PersonPinIcon from '@mui/icons-material/PersonPin';
 const Sidebar = () => {
   return (
     <div className="sidebar">
@@ -19,54 +19,72 @@ const Sidebar = () => {
       <hr></hr>
       <div className="center">
         <ul>
-          <p className="title">Main</p>
+          <p className="title">Lists</p>
+          <Link to={"List"} style={{ textDecoration: "none" }}>
+            <li>
+              <PersonIcon className="icon" />
+
+              <span>Users List</span>
+            </li>
+          </Link>
+          <Link to={"request"} style={{ textDecoration: "none" }}>
+            <li>
+              <NoteIcon className="icon" />
+              <span>Request List</span>
+            </li>
+          </Link>
+          <p className="title">Add Place</p>
+          <Link to={"district"} style={{ textDecoration: "none" }}>
+            <li>
+              <AddLocationAltIcon className="icon" />
+              <span>District</span>
+            </li>
+          </Link>
+          <Link to={"location"} style={{ textDecoration: "none" }}>
+            <li>
+              <MyLocationIcon className="icon" />
+              <span>Location</span>
+            </li>
+          </Link>
+          <Link to={"type"} style={{ textDecoration: "none" }}>
+            <li>
+              <AddIcon className="icon" />
+              <span>Type</span>
+            </li> 
+          </Link>
+          <Link to={"place"} style={{ textDecoration: "none" }}>
+          <p className="title">User Place</p>
           <li>
-            <DashboardIcon className="icon" />
-            <span>Dashboard</span>
-          </li>
-          <li>
-            <PersonIcon className="icon" />
-            <span>Users</span>
-          </li>
-          <li>
-            <LocationOnIcon className="icon" />
-            <span>map</span>
-          </li>
-          <p className="title">Edit</p>
-          <li>
-            <AccountCircleIcon className="icon" />
-            <span>My Profile</span>
-          </li>
-          <li>
-            <PersonAddIcon className="icon" />
-            <span>Edit Profile</span>
-          </li>
-          <li>
-            <CircleNotificationsIcon className="icon" />
-            <span>Notification</span>
-          </li>
-          <p className="title">In And Out</p>
-          <li>
-            <LoginIcon className="icon" />
-            <span>Log In</span>
-          </li>
-          <li>
-            <AppRegistrationIcon className="icon" />
-            <span>Registration</span>
-          </li>
-          <p className="title">Service</p>
-          <li>
-            <NoteIcon className="icon" />
-            <span>Request</span>
-          </li>
-          <li>
-            <AddLocationAltIcon className="icon" />
-            <span>App Place</span>
-          </li>
-          <li>
-            <SettingsIcon className="icon" />
-            <span>Settings</span>
-          </li>
+              <PersonPinIcon className="icon" />
+              <span>Place</span>
+            </li> 
+            </Link>
+          <p className="title">Bus Route</p>
+          <Link to={"route"} style={{ textDecoration: "none" }}>
+            <li>
+              <RouteIcon className="icon" />
+              <span>Route</span>
+            </li>
+          </Link>
+          <Link to={"schedule"} style={{ textDecoration: "none" }}>
+            <li>
+              <DepartureBoardIcon className="icon" />
+              <span>Schedule</span>
+            </li>
+          </Link>
+          <Link to={"stop"} style={{ textDecoration: "none" }}>
+            <li>
+              <HailIcon className="icon" />
+              <span>Stop</span>
+            </li>
+          </Link>
+          <p className="title">Log Out</p>
+          <Link to={"/"} style={{ textDecoration: "none" }}>
+            <li>
+              <LogoutIcon className="icon" />
+              <span>Log Out</span>
+            </li>
+          </Link>
         </ul>
       </div>
       <div className="bottom">

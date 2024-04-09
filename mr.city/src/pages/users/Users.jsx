@@ -1,5 +1,5 @@
-import Navbar from "../../components/navbar/Navbar"
-import Sidebar from "../../components/sidebar/Sidebar"
+import Navbar from "../../components/navbar/Navbar";
+import Sidebar from "../../components/sidebar/Sidebar";
 import "./users.scss"
 
 const Users = () => {
@@ -13,4 +13,4 @@ const Users = () => {
   )
 }
 
-export default Users
+export default Users;

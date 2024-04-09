@@ -7,37 +7,24 @@ class chaangepass extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body:Center(
+      body: Center(
         child: Container(
           decoration: BoxDecoration(
-            image: DecorationImage(image: AssetImage('assets/register.jpg'),fit: BoxFit.cover)
+            image: DecorationImage(image: AssetImage('pch.jpg'),fit: BoxFit.fill),
           ),
           width: double.infinity,
           height: double.infinity,
           padding: EdgeInsets.all(20),
-          child: Padding(padding: EdgeInsets.all(20.0),
+          child: Padding(padding: EdgeInsets.all(20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               TextFormField(
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: Color.fromARGB(255,139,181,203),
-                  labelText: 'Old password',
-                  labelStyle: TextStyle(color: Color.fromARGB(251, 1, 1, 8)),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(50.0),
-                    borderSide: BorderSide.none,
-                  )
-                ),
-              ),
-              SizedBox(height: 20),
-              TextFormField(
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Color.fromARGB(255,139,181,203),
-                  labelText: 'New password',
-                  labelStyle: TextStyle(color: Color.fromARGB(255, 1, 1, 4)),
+                  fillColor: Color.fromARGB(255,139,1181,203),
+                  labelText: 'Email',
+                  labelStyle: TextStyle(color: Color.fromARGB(248, 0, 0, 24)),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(50),
                     borderSide: BorderSide.none,
@@ -45,33 +32,20 @@ class chaangepass extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 20),
-              TextFormField(
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Color.fromARGB(255,139,181,203),
-                  labelText: 'Retype password',
-                  labelStyle: TextStyle(color: Color.fromARGB(255, 0, 0, 24)),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(50),
-                    borderSide: BorderSide.none,
-                  )
-                ),
-              ),SizedBox(height: 20),
               Row(
                 children: [
                   Expanded(child: ElevatedButton(onPressed: (){
-          
+
                   }, child: Padding(padding: EdgeInsets.all(10),
-                  child: Text('Change Password',style: TextStyle(color: Color.fromARGB(255, 0, 0, 24)),),
-                  ))
-                  )
+                  child: Text('Submit',style: TextStyle(color: Color.fromARGB(255, 0, 0, 24)),),
+                  )))
                 ],
               )
             ],
           ),
           ),
         ),
-      )
+      ),
     );
   }
 }

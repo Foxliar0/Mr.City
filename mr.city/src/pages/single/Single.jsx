@@ -3,6 +3,7 @@ import Sidebar from "../../components/sidebar/Sidebar"
 import "./single.scss"
 
 const Single = () => {
+  
   return (
     <div className="single">
       <Sidebar/>
@@ -14,4 +15,4 @@ const Single = () => {
   )
 }
 
-export default Single
+export default Single;

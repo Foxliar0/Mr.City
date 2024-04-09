@@ -1,0 +1,12 @@
+.stop {
+  display: flex;
+
+  .stopcontainer {
+    flex: 6;
+
+    .button {
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}

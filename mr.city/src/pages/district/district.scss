@@ -1,0 +1,20 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.district{
+    display: flex;
+    background-size: cover;
+    background-position: center;
+
+    .discontainer{
+        flex: 6;
+        
+        .boxb{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}

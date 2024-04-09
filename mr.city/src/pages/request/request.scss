@@ -1,0 +1,17 @@
+.request{
+    display: flex;
+
+    .requestContainer{
+        flex: 6;
+        width: 1200px;
+        .requestListSelectgreen{
+            color: rgb(28, 210, 0);
+        }
+
+        .requestListDeletered{
+            color: red;
+        }
+    }
+}
+
+
