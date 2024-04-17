@@ -23,7 +23,7 @@ function AdminRoutes() {
         <Sidebar />
         <div className="homecontainer">
           <Navbar />
-          <Box className="widgets" sx={{flex:6}}>
+          <Box className="widgets" sx={{flex:6,flexDirection:'column'}}>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/list" element={<List />} />

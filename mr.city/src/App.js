@@ -5,7 +5,7 @@ import AdminRoutes from "./AdminRoutes";
 function App() {
   return (
     <Routes>
-      <Route path="dashboard/*" element={<AdminRoutes />} />
+      <Route path="/dashboard/*" element={<AdminRoutes />} />
       <Route path="/" element={<Login />} />
     </Routes>
   );
