@@ -18,14 +18,16 @@ class Addplace extends StatefulWidget {
 }
 
 class _AddplaceState extends State<Addplace> {
+  
   List<Map<String, dynamic>> district = [];
   List<Map<String, dynamic>> location = [];
+  List<Map<String, dynamic>> type = [];
   FirebaseFirestore db = FirebaseFirestore.instance;
 
   final TextEditingController _placeController = TextEditingController();
   final TextEditingController _detailsController = TextEditingController();
 
-   XFile? _selectedImage;
+  XFile? _selectedImage;
 
   late ProgressDialog _progressDialog;
 
@@ -50,7 +52,6 @@ class _AddplaceState extends State<Addplace> {
 
   Future<void> fetchLocation(String id) async {
     try {
-      
       selectlocation = '';
       QuerySnapshot<Map<String, dynamic>> querySnapshot = await db
           .collection('Location')
@@ -68,21 +69,41 @@ class _AddplaceState extends State<Addplace> {
     } catch (e) {
       print(e);
     }
-  }  
+  }
 
+Future<void> fetchType() async {
+    try {
+       selecttype = '';
+      QuerySnapshot<Map<String, dynamic>> querySnapshot =
+          await db.collection('Type').get();
 
+      List<Map<String, dynamic>> typ = querySnapshot.docs
+          .map((doc) => {
+                'id': doc.id,
+                'Type': doc['type'].toString(),
+              })
+          .toList();
+      setState(() {
+        type = typ;
+      });
+    } catch (e) {
+      print('Error fetching type data: $e');
+    }
+  }
 
   Future<void> insertData() async {
     try {
-        final user = FirebaseAuth.instance.currentUser;
+      final user = FirebaseAuth.instance.currentUser;
       final userId = user?.uid;
       final data = <String, dynamic>{
         'user id': userId,
         'location': selectlocation,
         'place': _placeController.text.trim(),
         'details': _detailsController.text,
-        'status':0,
+        'status': 0,
+        'type':selecttype,
       };
+      print("data: $data ");
       db
           .collection('place')
           .add(data)
@@ -93,9 +114,9 @@ class _AddplaceState extends State<Addplace> {
                 backgroundColor: Colors.green,
                 textColor: Colors.white,
               ));
-              await _uploadImage(userId!);
+      await _uploadImage(userId!);
     } catch (e) {
-      print(e);
+      print("Error inserting data $e");
       Fluttertoast.showToast(
         msg: 'Failed',
         toastLength: Toast.LENGTH_SHORT,
@@ -106,19 +127,19 @@ class _AddplaceState extends State<Addplace> {
     }
   }
 
-
   String selectdistrict = '';
   String selectlocation = '';
-
+  String selecttype = '';
 
   @override
   void initState() {
     super.initState();
     fetchDistrict();
+    fetchType();
     _progressDialog = ProgressDialog(context);
   }
 
- Future<void> _uploadImage(String userId) async {
+  Future<void> _uploadImage(String userId) async {
     try {
       if (_selectedImage != null) {
         Reference ref =
@@ -234,6 +255,7 @@ class _AddplaceState extends State<Addplace> {
                   ).toList(),
                 ),
                 const SizedBox(height: 20),
+
                 DropdownButtonFormField<String>(
                   value: selectlocation.isNotEmpty ? selectlocation : null,
                   decoration: InputDecoration(
@@ -272,6 +294,48 @@ class _AddplaceState extends State<Addplace> {
                     },
                   ).toList(),
                 ),
+                const SizedBox(height: 20),
+
+                DropdownButtonFormField<String>(
+                  value: selecttype.isNotEmpty ? selecttype : null,
+                  decoration: InputDecoration(
+                    label: const Text('Type'),
+                    hintText: 'Select Type',
+                    hintStyle: const TextStyle(
+                      color: Color.fromARGB(255, 18, 18, 18),
+                    ),
+                    border: OutlineInputBorder(
+                      borderSide: const BorderSide(
+                        color: Color.fromARGB(
+                            255, 0, 0, 0), // Default border color
+                      ),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(
+                        color: Color.fromARGB(
+                            255, 0, 0, 0), // Default border color
+                      ),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      
+                      selecttype = newValue!;
+                    });
+                  },
+                  isExpanded: true,
+                  items: type.map<DropdownMenuItem<String>>(
+                    (Map<String, dynamic> typ) {
+                      return DropdownMenuItem<String>(
+                        value: typ['id'],
+                        child: Text(typ['Type']),
+                      );
+                    },
+                  ).toList(),
+                ),
+
                 const SizedBox(height: 20),
                 TextFormField(
                   controller: _placeController,

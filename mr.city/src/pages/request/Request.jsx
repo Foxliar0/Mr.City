@@ -28,6 +28,13 @@ const Request = () => {
       align: "center",
     },
     {
+      field: "type",
+      headerName: "Type",
+      flex: 5,
+      headerAlign: "center",
+      align: "center",
+    },
+    {
       field: "place",
       headerName: "Place:",
       flex: 5,
@@ -123,7 +130,6 @@ const Request = () => {
               },
             }}
             pageSizeOptions={[5, 10]}
-            checkboxSelection
           />
         </Box>
       </Box>

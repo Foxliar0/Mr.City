@@ -34,21 +34,6 @@ const List = () => {
       headerAlign: "center",
       align: "center",
     },
-    {
-      field: "action",
-      headerName: "Action",
-      flex: 4,
-      renderCell: (params) => {
-        return (
-          <>
-            <DeleteIcon
-              className="districtListDeletered"
-              // onClick={() => districtDelete(params.row.email_id)}
-            />
-          </>
-        );
-      },
-    },
   ];
 
   const fetchData = async () => {
@@ -78,7 +63,6 @@ const List = () => {
             },
           }}
           pageSizeOptions={[5, 10]}
-          checkboxSelection
         />
       </Box>
     </div>

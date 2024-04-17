@@ -6,10 +6,10 @@ import { Box } from "@mui/material";
 const Home = () => {
   return (
     <>
+      {/* <Widget />
       <Widget />
       <Widget />
-      <Widget />
-      <Widget />
+      <Widget /> */}
     </>
   );
 };

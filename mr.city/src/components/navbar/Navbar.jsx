@@ -11,13 +11,6 @@ const Navbar = () => {
             <HomeIcon/>
           </div>
           </Link>
-          <div className="item">
-            <img
-            src="https://images.pexels.com/photos/17736421/pexels-photo-17736421/free-photo-of-close-up-of-a-little-cormorant.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            alt=""
-            className="avatar"
-            />
-          </div>
         </div>
       </div>
     </div>

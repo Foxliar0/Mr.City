@@ -202,7 +202,6 @@ const Setstop = () => {
                 <Card sx={{ width: "500px" }}>
                   <CardContent style={{ border: "4px solid #ccc" }}>
                     <Typography variant="h7" gutterBottom className="typo">
-                      From
                     </Typography>
                     <Stack spacing={2} sx={{ mt: 4 }} direction="row">
                       <Typography variant="h7" gutterBottom className="typo">

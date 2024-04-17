@@ -9,7 +9,6 @@ import RouteIcon from "@mui/icons-material/Route";
 import DepartureBoardIcon from "@mui/icons-material/DepartureBoard";
 import HailIcon from "@mui/icons-material/Hail";
 import { Link } from "react-router-dom";
-import PersonPinIcon from '@mui/icons-material/PersonPin';
 const Sidebar = () => {
   return (
     <div className="sidebar">
@@ -52,13 +51,6 @@ const Sidebar = () => {
               <span>Type</span>
             </li> 
           </Link>
-          <Link to={"place"} style={{ textDecoration: "none" }}>
-          <p className="title">User Place</p>
-          <li>
-              <PersonPinIcon className="icon" />
-              <span>Place</span>
-            </li> 
-            </Link>
           <p className="title">Bus Route</p>
           <Link to={"route"} style={{ textDecoration: "none" }}>
             <li>
@@ -86,10 +78,6 @@ const Sidebar = () => {
             </li>
           </Link>
         </ul>
-      </div>
-      <div className="bottom">
-        <div className="coloroption"></div>
-        <div className="coloroption"></div>
       </div>
     </div>
   );
