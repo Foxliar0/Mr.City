@@ -5,6 +5,7 @@ import 'package:mr_city/changepassword.dart';
 import 'package:mr_city/editprofile.dart';
 import 'package:mr_city/email.dart';
 import 'package:mr_city/myplace.dart';
+import 'package:mr_city/myrequest.dart';
 import 'package:mr_city/topbar.dart';
 
 // ignore: camel_case_types
@@ -161,12 +162,28 @@ class _MyProfileState extends State<MyProfile> {
                                         Navigator.push(
                                             context,
                                             MaterialPageRoute(
-                                              builder: (context) => ChangePass(),
+                                              builder: (context) =>
+                                                  ChangePass(),
                                             ));
                                       },
                                       child: Text('Change Password')))
                             ],
-                          )
+                          ),
+                          SizedBox(height: 10),
+                          Row(
+                            children: [
+                              Expanded(
+                                  child: ElevatedButton(
+                                      onPressed: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) => MyRequest(),
+                                            ));
+                                      },
+                                      child: Text('My Request')))
+                            ],
+                          ),
                         ],
                       ),
                     )

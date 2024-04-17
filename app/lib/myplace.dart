@@ -11,7 +11,6 @@ class Myplace extends StatefulWidget {
 }
 
 class _MyplaceState extends State<Myplace> {
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,27 +22,41 @@ class _MyplaceState extends State<Myplace> {
                 image: AssetImage('assets/asdfg.jpg'),
                 alignment: Alignment.bottomCenter,
                 fit: BoxFit.fill)),
-                padding: EdgeInsets.all(20),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Row(
-                      children: [
-                        Expanded(child: ElevatedButton(onPressed: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => Addplace(),));
-                        }, child: Text('Add Place')))
-                      ],
-                    ),
-                    SizedBox(height: 20),
-                    Row(
-                      children: [
-                        Expanded(child: ElevatedButton(onPressed: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => Request(),));
-                        }, child: Text('Request')))
-                      ],
-                    )
-                  ],
-                ),
+        padding: EdgeInsets.all(20),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Row(
+              children: [
+                Expanded(
+                    child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Addplace(),
+                              ));
+                        },
+                        child: Text('Add Place')))
+              ],
+            ),
+            SizedBox(height: 20),
+            Row(
+              children: [
+                Expanded(
+                    child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Request(),
+                              ));
+                        },
+                        child: Text('Request')))
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

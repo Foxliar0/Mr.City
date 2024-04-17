@@ -3,6 +3,7 @@ import 'package:mr_city/topbar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:mr_city/user_request.dart';
 
 class Request extends StatefulWidget {
   const Request({super.key});
@@ -33,7 +34,7 @@ class _RequestState extends State<Request> {
       List<Map<String, dynamic>> placedetails = [];
       for (var doc in placeSnapshot.docs) {
         Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-        data['place'] = doc["place"];
+        data['place'] = doc.id;
         data['details'] = doc["details"];
         data['status'] = doc["status"];
 
@@ -146,11 +147,28 @@ class _RequestState extends State<Request> {
                                       ),
                                       SizedBox(height: 8.0),
                                       Text(
-                                        'Status Status: ${_getPlaceStatus(placeDetail['status'])}',
+                                        'Status: ${_getPlaceStatus(placeDetail['status'])}',
                                         style: TextStyle(
                                           fontSize: 16.0,
                                         ),
                                       ),
+                                      if (placeDetail['status'] == 1)
+                                        ElevatedButton(
+                                          onPressed: () {
+                                            // Navigate to the view enquiries page
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    ViewEnquiriesPage(
+                                                  placeId:
+                                                      placeDetail['placeId'],
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                          child: Text('View Enquiries'),
+                                        ),
                                     ],
                                   ),
                                 ),
