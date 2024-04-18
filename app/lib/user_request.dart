@@ -22,6 +22,7 @@ class _ViewEnquiriesPageState extends State<ViewEnquiriesPage> {
   void initState() {
     super.initState();
     _fetchEnquiriesData();
+    print(widget.placeId);
   }
 
   Future<void> _fetchEnquiriesData() async {

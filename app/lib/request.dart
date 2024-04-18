@@ -80,15 +80,7 @@ class _RequestState extends State<Request> {
             children: [
               const Topbar(),
               SizedBox(height: 30),
-              TextFormField(
-                keyboardType: TextInputType.multiline,
-                maxLines: null,
-                decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Color.fromARGB(255, 139, 181, 203),
-                    hintText: 'Details',
-                    hintStyle: TextStyle(color: Color.fromARGB(255, 0, 0, 0))),
-              ),
+             
               Container(
                 padding: EdgeInsets.all(5),
                 color: Colors.black
@@ -161,8 +153,7 @@ class _RequestState extends State<Request> {
                                               MaterialPageRoute(
                                                 builder: (context) =>
                                                     ViewEnquiriesPage(
-                                                  placeId:
-                                                      placeDetail['placeId'],
+                                                  placeId: placeDetail['place'],
                                                 ),
                                               ),
                                             );

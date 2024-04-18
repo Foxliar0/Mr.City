@@ -93,6 +93,7 @@ class _UserDashboardState extends State<UserDashboard> {
           .where('user id', isNotEqualTo: userId)
           .where('location', isEqualTo: selectlocation)
           .where('type', isEqualTo: selecttype)
+          .where('status', isEqualTo: 1)
           .get();
 
       List<Map<String, dynamic>> placedetails = [];
