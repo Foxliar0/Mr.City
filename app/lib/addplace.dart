@@ -181,39 +181,6 @@ Future<void> fetchType() async {
               children: [
                 const Topbar(),
                 const SizedBox(height: 20),
-                const Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Center(
-                      child: Stack(
-                        children: [
-                          CircleAvatar(
-                              radius: 70,
-                              backgroundColor: Color.fromARGB(255, 92, 92, 97),
-                              child: Icon(
-                                Icons.add,
-                                size: 40,
-                                color: Color.fromARGB(255, 0, 0, 0),
-                              )),
-                          Positioned(
-                            bottom: 0,
-                            right: 0,
-                            child: CircleAvatar(
-                              backgroundColor:
-                                  Color.fromARGB(255, 139, 181, 203),
-                              radius: 18,
-                              child: Icon(
-                                Icons.edit,
-                                size: 18,
-                                color: Color.fromARGB(255, 0, 0, 0),
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                    )
-                  ],
-                ),
                 const SizedBox(height: 20),
                 DropdownButtonFormField<String>(
                   value: selectdistrict.isNotEmpty ? selectdistrict : null,
