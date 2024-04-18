@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:mr_city/changepassword.dart';
 import 'package:mr_city/editprofile.dart';
 import 'package:mr_city/email.dart';
+import 'package:mr_city/login.dart';
 import 'package:mr_city/myplace.dart';
 import 'package:mr_city/myrequest.dart';
 import 'package:mr_city/topbar.dart';
@@ -58,6 +58,8 @@ class _MyProfileState extends State<MyProfile> {
     super.initState();
     getData();
   }
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -182,6 +184,18 @@ class _MyProfileState extends State<MyProfile> {
                                             ));
                                       },
                                       child: Text('My Request')))
+                            ],
+                          ),
+                          SizedBox(height: 10),
+                          Row(
+                            children: [
+                              Expanded(
+                                  child: ElevatedButton(
+                                      onPressed: () {
+                                        _auth.signOut();
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginScreen(),));
+                                      },
+                                      child: Text('Log Out')))
                             ],
                           ),
                         ],

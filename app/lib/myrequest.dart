@@ -13,68 +13,82 @@ class MyRequest extends StatefulWidget {
 }
 
 class _MyRequestState extends State<MyRequest> {
-  List<Map<String, dynamic>> requestData = []; // Add this line
+  List<Map<String, dynamic>> requestData = [];
 
   @override
   void initState() {
     super.initState();
-    fetchRequestData(); // Add this line
+    fetchRequestData();
   }
 
   Future<void> fetchRequestData() async {
-    // Fetch data from Firestore
-    final user = FirebaseAuth.instance.currentUser;
-      final userId = user?.uid;// Replace with the actual user ID
-    final snapshot = await FirebaseFirestore.instance
-        .collection('tbl_request')
-        .where('user', isEqualTo: userId)
-        .get();
-
-    setState(() {
-      requestData = snapshot.docs.map((doc) => doc.data()).toList();
-    });
+    try {
+      final user = FirebaseAuth.instance.currentUser;
+      final userId = user?.uid;
+      final snapshot = await FirebaseFirestore.instance
+          .collection('request')
+          .where('user_id', isEqualTo: userId)
+          .get();
+      setState(() {
+        requestData = snapshot.docs.map((doc) => doc.data()).toList();
+      });
+    } catch (e) {
+      print("Error: $e");
+    }
+    print(requestData);
   }
 
   @override
-Widget build(BuildContext context) {
-  return Scaffold(
-    body: Container(
-      width: double.infinity,
-      height: double.infinity,
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage('assets/asdfg.jpg'),
-          alignment: Alignment.bottomCenter,
-          fit: BoxFit.fill,
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/asdfg.jpg'),
+            alignment: Alignment.bottomCenter,
+            fit: BoxFit.fill,
+          ),
+        ),
+        padding: const EdgeInsets.all(20),
+        child: ListView.builder(
+          itemCount: requestData.length,
+          itemBuilder: (context, index) {
+            final request = requestData[index];
+            return Card(
+              color: Colors.white,
+              elevation: 4,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      request['request'],
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      request['reply'],
+                      style: const TextStyle(
+                        fontSize: 14,
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
         ),
       ),
-      padding: const EdgeInsets.all(20),
-      child: ListView.builder(
-        itemCount: requestData.length,
-        itemBuilder: (context, index) {
-          final request = requestData[index];
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ListTile(
-                title: Text(request['title']),
-                subtitle: Text(request['description']),
-              ),
-              if (request['status'] == 1)
-                Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
-                  child: Text(
-                    'Reply: ${request['reply']}',
-                    style: const TextStyle(
-                      fontStyle: FontStyle.italic,
-                    ),
-                  ),
-                ),
-            ],
-          );
-        },
-      ),
-    ),
-  );
-}
+    );
+  }
 }
